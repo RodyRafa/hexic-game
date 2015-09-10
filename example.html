@@ -34,12 +34,30 @@
   </div>
   <script>
     var HexicGame = function (options) {
-      console.log(options);
       this.game = document.getElementById('hexic-game');
-      this.genHexagon(1);
+      this.createGrid(5, 5);
     };
     
-    HexicGame.prototype.genHexagon = function (id) {
+    HexicGame.prototype.createGrid = function (col, row) {
+      var posX = 0;
+      var posY = 50;
+      var len = col * row;
+      for(var i=1; i< len+1; i++) {
+        var pon = this.createHexagon(i);
+        pon.style.marginLeft = posX+'px';
+        pon.style.marginTop = posY+'px';
+        posX += 55;
+        if(i % row == 0){
+          posX = 55 / 2;
+          posY += 48; 
+          if(i % 2 == 0) {
+            posX = 0;
+          }
+        }
+      }
+    };
+
+    HexicGame.prototype.createHexagon = function (id) {
       var pon = document.createElement('DIV');
       pon.setAttribute('class', 'hex');
       pon.setAttribute('id', id);
@@ -56,6 +74,7 @@
       pon.appendChild(pBottom);
 
       this.game.appendChild(pon); 
+      return pon;
     };
     new HexicGame('adoleta');
   </script>
