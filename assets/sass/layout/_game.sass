@@ -1,0 +1,27 @@
+$module-name: 'hexic-game'
+
+##{$module-name}
+  .hex
+    width: 30px
+    height: 50px
+    background: green
+    position: absolute
+    
+    &:after 
+      content: ""
+      border-left: 15px solid green
+      border-top: 25px solid transparent
+      border-bottom: 25px solid transparent
+      display: inline-block
+      position: absolute
+      right: -15px
+
+    &:before 
+      content: ""
+      border-top: 25px solid transparent
+      border-bottom: 25px solid transparent
+      border-right: 15px solid green
+      display: inline-block
+      position: absolute
+      left: -15px
+
