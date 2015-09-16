@@ -19,5 +19,11 @@
     display: inline-block;
     position: absolute;
     left: -15px; }
+#hexic-game .hex.blue {
+  background: blue; }
+  #hexic-game .hex.blue:after {
+    border-left: 15px solid blue; }
+  #hexic-game .hex.blue:before {
+    border-right: 15px solid blue; }
 
 /*# sourceMappingURL=main.min.css.map */
