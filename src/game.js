@@ -84,42 +84,55 @@
   };
 
   HexicGame.prototype.setColor = function (el) {
-    el.setAttribute('class', 'hex blue');
+    if(el) {
+      console.log(el);
+      el.setAttribute('class', 'hex blue');
+    }
   }
 
   HexicGame.prototype.getIdTop = function (id) {
+    if(id < 4) return null;
     return id - 10 > -1 ? id - 10 : null;
   }
 
-  HexicGame.prototype.getIdBottom = function (id) {
-    return id + 10 <= this.arrPons.length ? id + 10 : null;
-  }
-
   HexicGame.prototype.getIdTopLeft = function (id) {
+    if((id % 10) == 0) return null;
+    if(id < 4) return null;
     var distId = 6;
-    if(!this.checkPairRow(id)) {
+    if(!this.checkPairRow(id) && (String(id).charAt(1) != "4") || (String(id).charAt(1) == '9')) {
       distId = 5;
     }
-    return id - distId > 0 ? id - distId : null;
+    return id - distId >= 0 ? id - distId : null;
   };
 
   HexicGame.prototype.getIdTopRight = function (id) {
+    if(id < 4) return null;
+    if(String(id).charAt(1) == '9')return null;
     var distId = 5;
-    if(!this.checkPairRow(id)) {
+    if(!this.checkPairRow(id) && (String(id).charAt(1) != "4")) {
       distId = 4;
     }
     return id - distId > 0 ? id - distId : null;
   };
+  
+  HexicGame.prototype.getIdBottom = function (id) {
+    return id + 10 <= this.arrPons.length ? id + 10 : null;
+  }
 
   HexicGame.prototype.getIdBotLeft = function (id) {
+    if((id % 10) == 0 ) return null;
     var distId = 4;
-    if(!this.checkPairRow(id)) {
+    if(!this.checkPairRow(id) && (String(id).charAt(1) != "4")) {
       distId = 6;
+    }
+    if (String(id).charAt(1) == '9') {
+      distId = 5;
     }
     return id + distId <= this.arrPons.length ? id + distId : null;
   };
 
   HexicGame.prototype.getIdBotRight = function (id) {
+    if(String(id).charAt(1) == '9')return null;
     return id + 5 <= this.arrPons.length ? id + 5 : null;
   };
 
